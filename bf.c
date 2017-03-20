@@ -26,11 +26,12 @@ char * readfile(char * name)
 
 int eval(char *code)
 {
-    int pos = 0;
+    if (!code) return 0;
+    int ip = 0;
     char * ptr = mem;
     char ch;
 
-    while ((ch = code[pos++])) {
+    while ((ch = code[ip++])) {
         if (ch == '>') ptr++;
         else if (ch == '<') ptr--;
         else if (ch == '+') (*ptr)++;
@@ -39,13 +40,13 @@ int eval(char *code)
         else if (ch == '.') printf("%c",*ptr);
         else if (ch == '[') {
             if (*ptr == 0) {
-                while(code[pos++] != ']');
+                while(code[ip++] != ']');
             }
         }
         else if (ch == ']') {
             if (*ptr != 0) {
-                while (code[pos--] != '[');
-                pos += 2;
+                while (code[ip--] != '[');
+                ip += 2;
             }
         }
     }
