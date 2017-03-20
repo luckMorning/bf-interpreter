@@ -1,7 +1,9 @@
 #include <stdio.h>
 
+/*our memery */
 char mem[1024] = {0};
 
+/*get source code */
 char * readfile(char * name)
 {
     FILE * f = fopen(name,"r");
@@ -24,6 +26,7 @@ char * readfile(char * name)
     return res;
 }
 
+/* evel inter code */
 int eval(char *code)
 {
     if (!code) return 0;
