@@ -1,7 +1,7 @@
 #include <stdio.h>
-
+#define MEMLEN 1024
 /*our memery */
-char mem[1024] = {0};
+char mem[MEMLEN] = {0};
 
 /*get source code */
 char * readfile(char * name)
@@ -51,6 +51,11 @@ int eval(char *code)
                 while (code[ip--] != '[');
                 ip += 2;
             }
+        }
+        if (ptr < mem || ptr > (mem+MEMLEN-1))
+        {
+            printf("out of memery[%ld]\n",ptr-mem);
+            return 0;
         }
     }
     return 0;
